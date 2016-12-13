@@ -95,6 +95,7 @@ public class VistaNota extends AppCompatActivity implements ContratoNota.Interfa
 
                     listaAux.add(m);
                 }
+                System.out.println(Arrays.toString(lista.toArray(new Mapas[lista.size()])));
                 if ( lista != null ) {
 
                     Intent i = new Intent(VistaNota.this, MapsActivity.class);
@@ -163,6 +164,7 @@ public class VistaNota extends AppCompatActivity implements ContratoNota.Interfa
     public void onConnected(@Nullable Bundle bundle) {
 
         Toast.makeText(this, "Conectado", Toast.LENGTH_SHORT).show();
+        System.out.println("onConnected");
 
         iniGeoLocalizacion();
     }
@@ -210,6 +212,7 @@ public class VistaNota extends AppCompatActivity implements ContratoNota.Interfa
     @Override
     public void onLocationChanged(Location location) {
 
+        System.out.println("Cambia localizacion");
         map.setLatitud(location.getLatitude());
         map.setLongitud(location.getLongitude());
     }

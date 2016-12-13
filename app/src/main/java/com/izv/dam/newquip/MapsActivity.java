@@ -53,6 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onStart() {
+        System.out.println("onStart");
         mGoogleApiClient.connect();
         super.onStart();
     }
@@ -74,6 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Bundle b = getIntent().getExtras();
         mapas = b.getParcelableArrayList("mapas");
+        System.out.println("init");
     }
 
     //Metodos de las interfaces
@@ -85,6 +87,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for ( Mapas m : mapas ) {
 
+            System.out.println("mierda");
             LatLng punto = new LatLng(m.getLatitud(), m.getLongitud());
             mMap.addMarker(new MarkerOptions().position(punto).title("Punto"));
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(Granada));
@@ -100,7 +103,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnected(@Nullable Bundle bundle) {
         Toast.makeText(this, "Conectado", Toast.LENGTH_SHORT).show();
 
-         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        System.out.println("onConnected");
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         Location mLastLocation =  LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
